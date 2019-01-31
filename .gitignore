@@ -1,2 +1,5 @@
 # vim swap files
 *.sw[a-p]
+
+# viralgiral data file
+VG_data

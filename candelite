@@ -4,6 +4,9 @@ use Mojo::Loader 'load_class';
 
 use lib map app->home->rel_file($_)->to_string => qw(lib viralgiral/lib);
 
+# Load VG plugin, default prefix: vg
+plugin ViralGiral => {introspection => 1};
+
 # Version status: load now, report later
 my @modules = qw(Mojolicious EventStore::Tiny ViralGiral Candelite);
 load_class $_ for @modules;
