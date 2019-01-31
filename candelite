@@ -1,0 +1,46 @@
+#!/usr/bin/env perl
+use Mojolicious::Lite;
+
+use lib map app->home->rel_file($_)->to_string => qw(lib viralgiral/lib);
+use Mojolicious;
+use EventStore::Tiny;
+use ViralGiral;
+use Candelite;
+
+get '/__versions__' => sub {
+    my $c = shift;
+    $c->stash(
+        perl_version    => $^V,
+        module_version  => {
+            Mojolicious         => $Mojolicious::VERSION,
+            'EventStore::Tiny'  => $EventStore::Tiny::VERSION,
+            ViralGiral          => $ViralGiral::VERSION,
+            Candelite           => $Candelite::VERSION,
+        },
+    );
+} => 'versions';
+
+app->start;
+
+__DATA__
+
+@@ versions.html.ep
+% layout 'default';
+% title 'Versions';
+<h1><%= title %></h1>
+<p><strong id="perl-version">perl version: <%= $perl_version %></strong></p>
+<table border="1" id="module-versions">
+    <thead><tr><th>module</th><th>version</th></tr></thead>
+    <tbody>
+    % for my $mod (sort keys %$module_version) {
+        <tr><th><%= $mod %></th><td><%= $module_version->{$mod} %></td></tr>
+    % }
+    </tbody>
+</table>
+
+@@ layouts/default.html.ep
+<!DOCTYPE html>
+<html>
+    <head><title>Candelite - <%= title %></title></head>
+    <body><%= content %></body>
+</html>
