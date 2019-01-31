@@ -1,23 +1,17 @@
 #!/usr/bin/env perl
 use Mojolicious::Lite;
+use Mojo::Loader 'load_class';
 
 use lib map app->home->rel_file($_)->to_string => qw(lib viralgiral/lib);
-use Mojolicious;
-use EventStore::Tiny;
-use ViralGiral;
-use Candelite;
 
-get '/__versions__' => sub {
-    my $c = shift;
-    $c->stash(
-        perl_version    => $^V,
-        module_version  => {
-            Mojolicious         => $Mojolicious::VERSION,
-            'EventStore::Tiny'  => $EventStore::Tiny::VERSION,
-            ViralGiral          => $ViralGiral::VERSION,
-            Candelite           => $Candelite::VERSION,
-        },
-    );
+# Version status: load now, report later
+my @modules = qw(Mojolicious EventStore::Tiny ViralGiral Candelite);
+load_class $_ for @modules;
+get '/__versions__' => {
+    perl_version    => $^V,
+    module_version  => {map {
+        $_      => eval('$' . $_ . '::VERSION')
+    } @modules},
 } => 'versions';
 
 app->start;
