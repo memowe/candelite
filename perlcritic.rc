@@ -1,0 +1,11 @@
+severity = 3
+verbose  = [%p] %m at line %l near '%r' in %F (Severity %s)\n
+
+[BadStrings]
+words = TODO
+
+[-TestingAndDebugging::RequireUseStrict]
+[-TestingAndDebugging::RequireUseWarnings]
+[-RegularExpressions::RequireExtendedFormatting]
+[-Subroutines::RequireFinalReturn]
+[-Subroutines::ProhibitSubroutinePrototypes]

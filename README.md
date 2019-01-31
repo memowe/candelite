@@ -1,4 +1,5 @@
-# † Candelite
+# † Candelite [![Travis CI tests](https://travis-ci.org/memowe/candelite.svg?branch=master)](https://travis-ci.org/memowe/candelite)
+
 
 Condolence as a service with a viral twist.
 
