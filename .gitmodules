@@ -1,0 +1,3 @@
+[submodule "viralgiral"]
+	path = viralgiral
+	url = https://github.com/memowe/viralgiral.git
