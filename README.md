@@ -11,8 +11,8 @@ Condolence as a service with a viral twist.
 - *([viralgiral][vg], already present as a submodule*
 
 [perl]: https://www.perl.org/get.html
-[mojo]: https://github.com/mojolicious/mojo
-[est]: https://github.com/memowe/EventStore-Tiny
+[mojo]: https://metacpan.org/pod/Mojolicious
+[est]: https://metacpan.org/pod/EventStore::Tiny
 [vg]: https://github.com/memowe/viralgiral
 
 ## Author and license
